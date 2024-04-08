@@ -1,11 +1,8 @@
-describe('My First Test Suite', function(){
+describe('My Second Test Suite', function(){
     it('First Test Case that does not do much', function(){
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
         cy.get("input[type='search']").type('ca')
-        cy.get("div[class='product']").as('productElement');
-        cy.get('@productElement').should('have.length',4)
-        cy.get("div[class='products']").find("div[class='product']").should('have.length',4)
-        cy.get("div[class='products']").find("div[class='product']").eq(2).contains('ADD TO CART').click()
+        
         cy.get("div[class='products']").find("div[class='product']").each(($el, index,$list) => {
            const productName = $el.find("h4[class='product-name']").text()
            
@@ -13,10 +10,11 @@ describe('My First Test Suite', function(){
            {
                 cy.wrap($el).find('button').click()
            }
-           
-           cy.get("div[class='brand greenLogo']").then(function(logo){
-                cy.log(logo.text())
-           })
         })
+
+        cy.get("a[class='cart-icon']").click()
+        cy.contains('PROCEED TO CHECKOUT').click()
+        cy.wait(2000)
+        cy.get("div.products-wrapper button:not(button[class='promoBtn']):visible").click()
     })
 })

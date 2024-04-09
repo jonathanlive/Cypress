@@ -11,6 +11,14 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('clickNextSiblingElementByText', (text, element, siblingElement) => { 
+    cy.get(element).each(($el, index, $list) => {
+        if($el.text().includes(text)){
+            cy.get(siblingElement).eq(index).click()
+        }
+    })
+ })
+
 //
 //
 // -- This is a child command --

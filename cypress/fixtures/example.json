@@ -2,5 +2,5 @@
   "name": "John",
   "email": "John@cypress.io",
   "password": "cypres@24",
-  "device": "iphone X"
+  "device": ["iphone X","Blackberry"]
 }

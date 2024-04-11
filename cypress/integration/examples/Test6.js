@@ -1,4 +1,7 @@
-  describe('Framework Concepts Test Suite', function() 
+  
+import HomePage from '../pageObjects/HomePage'
+
+describe('Framework Concepts Test Suite', function() 
 {
     //using before Hooks to setup test data
     beforeEach(function() {
@@ -20,8 +23,24 @@
         cy.visit("https://rahulshettyacademy.com/angularpractice/")
 
         cy.get("a[href*='shop']").click()
-        cy.clickNextSiblingElementByText(this.data.device,"h4.card-title",".card-footer > button")
+
+        cy.wrap(this.data.device).each((element) => {
+            cy.clickNextSiblingElementByText(element,"h4.card-title",".card-footer > button")
+        })
+
         cy.get("a[class='nav-link btn btn-primary']").click()
-        cy.get("tbody > tr:has(.btn-danger)").should('contain.text',this.data.device)
+        cy.wrap(this.data.device).each((element) => {
+            cy.get("table[class='table table-hover']").should('contain.text',element)
+        })
+    })
+
+    it('Using page object Design',function() {
+        const homePage = new HomePage()
+        cy.visit("https://rahulshettyacademy.com/angularpractice/")
+
+        homePage.GetInputName().type(this.data.name)
+        homePage.GetInputEmail().type(this.data.email)
+        homePage.GetInputPassword().type(this.data.password)
+        homePage.GetEditboxNameValidation().should('have.value', this.data.name)
     })
 })

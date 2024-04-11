@@ -7,5 +7,10 @@ module.exports = defineConfig({
     },
     specPattern: 'cypress/integration/examples/*.js'
   },
-  responseTimeout: 10000
+  responseTimeout: 10000,
+  defaultCommandTimeout: 10000,
+  env: {
+    
+    SeleniumPracticeUrl: "https://rahulshettyacademy.com/seleniumPractise/#/"
+  }
 });

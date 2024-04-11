@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "my-server -p 3030",
+    "cy:run": "cypress run"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,7 @@
     "cypress": "^13.7.2"
   },
   "devDependencies": {
-    "cypress-iframe": "^1.0.1"
+    "cypress-iframe": "^1.0.1",
+    "start-server-and-test": "^2.0.3"
   }
 }
